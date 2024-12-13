@@ -1,0 +1,19 @@
+<h1>Genera</h1>
+  <table class='table table-striped' aria-labelledby="tableLabel">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Genus</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (genus of genera; track genus.id) {
+        <tr>
+          <td>{{ genus.id }}</td>
+          <td><a [routerLink]="['/genera-species', genus.id]">{{ genus.colloquialName }}</a></td>
+          <td>{{ genus.scientificName }}</td>
+        </tr>  
+      }
+    </tbody>
+  </table>

@@ -1,18 +1,18 @@
-  <h1>Species</h1>
+<h1>{{ genusScientificName }} Species</h1>
 <table class='table table-striped' aria-labelledby="tableLabel">
   <thead>
     <tr>
       <th>ID</th>
-      <th>Common Name</th>
       <th>Scientific Name</th>
+      <th>Common Name</th>
     </tr>
   </thead>
   <tbody>
     @for (spec of species; track spec.id) {
     <tr>
       <td>{{ spec.id }}</td>
+      <td>{{ genusScientificName }} {{ spec.scientificName }}</td>
       <td>{{ spec.colloquialName }}</td>
-      <td>{{ spec.genusScientificName || 'Unknown' }} {{ spec.scientificName }}</td>
     </tr>
     }
   </tbody>

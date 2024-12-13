@@ -1,0 +1,63 @@
+<div class="container">
+    <h1>Create New Flower</h1>
+  
+    <!-- Genus Form -->
+    <section>
+      <h2>Create New Genus</h2>
+      <form [formGroup]="generaForm" (ngSubmit)="onSubmitGenus()">
+        <div>
+          <label for="genusColloquialName">Colloquial Name</label>
+          <input id="genusColloquialName" formControlName="colloquialName" />
+          @if (generaForm.controls['colloquialName'].invalid && generaForm.controls['colloquialName'].touched) {
+            Colloquial Name is required and must be under 50 characters.
+          }
+        </div>
+  
+        <div>
+          <label for="genusScientificName">Scientific Name</label>
+          <input id="genusScientificName" formControlName="scientificName" />
+          @if (generaForm.controls['scientificName'].invalid && generaForm.controls['scientificName'].touched) {
+            Scientific Name is required and must be under 50 characters.
+          }
+        </div>
+  
+        <button type="submit" [disabled]="generaForm.invalid">Create Genus</button>
+      </form>
+    </section>
+  
+    <!-- Species Form -->
+    <section>
+      <h2>Create New Species</h2>
+      <form [formGroup]="speciesForm" (ngSubmit)="onSubmitSpecies()">
+        <div>
+          <label for="speciesColloquialName">Colloquial Name</label>
+          <input id="speciesColloquialName" formControlName="colloquialName" />
+          @if (speciesForm.controls['colloquialName'].invalid && speciesForm.controls['colloquialName'].touched) {
+            Colloquial Name is required and must be under 50 characters.
+          }
+        </div>
+  
+        <div>
+          <label for="speciesScientificName">Scientific Name</label>
+          <input id="speciesScientificName" formControlName="scientificName" />
+          @if (speciesForm.controls['scientificName'].invalid && speciesForm.controls['scientificName'].touched) {
+            Scientific Name is required and must be under 50 characters.
+          }
+        </div>
+  
+        <div>
+          <label for="genusSelect">Genus</label>
+          <select id="genusSelect" formControlName="genusId">
+            @for (genus of generaList; track genus.id) {
+                <option value="{{ genus.id }}">{{ genus.colloquialName }} ({{ genus.scientificName }})</option>
+            }
+          </select>
+          @if (speciesForm.controls['genusId'].invalid && speciesForm.controls['genusId'].touched){
+            Please select a genus.
+          }
+        </div>
+  
+        <button type="submit" [disabled]="speciesForm.invalid">Create Species</button>
+      </form>
+    </section>
+  </div>
